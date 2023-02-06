@@ -1,9 +1,10 @@
 import React from 'react';
+import { DrumMachine } from './components/DrumMachine';
 import './App.css';
 
 function App() {
   return (
-    <div>TEMPLATE</div>
+    <DrumMachine />
   );
 }
 

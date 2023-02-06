@@ -1,3 +1,33 @@
+#drum-machine {
+  border: 5px solid orange;
+  margin: 15%;
+  height: 350px;
+  width: 700px;
+  background-color: darkgray;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 50%;
+}
+#button-wrapper, #control-panel {
+  grid-row-start: 1;
+  border: 0px solid black;
+  width: 95%;
+  height: 95%;
+  margin: 2.5%;
+}
+#button-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+}
+.drum-pad {
+  width: 95%;
+  height: 95%;
+  padding: 0;
+  align-self: center;
+  justify-self: center;
+}
+
 .App {
   text-align: center;
 }
