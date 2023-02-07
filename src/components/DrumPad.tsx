@@ -12,6 +12,7 @@ export const DrumPad:React.FC<Props> = ({ buttonId, audioId, audioSrc }): React.
 
   const dispatch: DispatchType = useDispatch();
   const soundEffect: React.MutableRefObject<HTMLAudioElement | null> = useRef(null);
+  const padButton: React.MutableRefObject<HTMLButtonElement | null> = useRef(null);
 
   const playSound = () => {
     if(soundEffect.current) {
@@ -29,13 +30,14 @@ export const DrumPad:React.FC<Props> = ({ buttonId, audioId, audioSrc }): React.
     switch(event.key){
       case audioId:
       case audioId.toLowerCase():
-        dispatch(updateDisplay(buttonId));
-        playSound();
+        if(padButton.current) {
+          padButton.current.click();
+        }
         break;
       default:
         break;
     }
-  }, [audioId, buttonId, dispatch]);
+  }, [audioId]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
@@ -45,7 +47,7 @@ export const DrumPad:React.FC<Props> = ({ buttonId, audioId, audioSrc }): React.
   }, [handleKeyPress]);
 
   return (
-    <button className='drum-pad' id={ buttonId } onClick={ handleClick }>
+    <button className='drum-pad' id={ buttonId } onClick={ handleClick } ref={ padButton }>
       <audio className='clip' id={ audioId } src={ audioSrc } ref={ soundEffect }></audio>
       { audioId }
     </button>

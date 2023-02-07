@@ -16,7 +16,7 @@ code {
   background-color: gray;
   height: 100vh;
   margin: 0;
-  display: flex;
+  display: grid;
   align-content: center;
   justify-content: center;
 }
