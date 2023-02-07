@@ -3,12 +3,12 @@ import { useDispatch } from "react-redux";
 import { updateDisplay } from "../app/actionCreators";
 
 type Props = {
-  buttonID: string
-  audioID: string
-  audioSRC: string
+  buttonId: string
+  audioId: string
+  audioSrc: string
 }
 
-export const DrumPad:React.FC<Props> = ({ buttonID, audioID, audioSRC }) => {
+export const DrumPad:React.FC<Props> = ({ buttonId, audioId, audioSrc }): React.ReactElement => {
 
   const dispatch: DispatchType = useDispatch();
   const soundEffect: React.MutableRefObject<HTMLAudioElement | null> = useRef(null);
@@ -21,21 +21,21 @@ export const DrumPad:React.FC<Props> = ({ buttonID, audioID, audioSRC }) => {
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    dispatch(updateDisplay(buttonID));
+    dispatch(updateDisplay(buttonId));
     playSound();
   }
 
   const handleKeyPress = useCallback((event: KeyboardEvent) => {
     switch(event.key){
-      case audioID:
-      case audioID.toLowerCase():
-        dispatch(updateDisplay(buttonID));
+      case audioId:
+      case audioId.toLowerCase():
+        dispatch(updateDisplay(buttonId));
         playSound();
         break;
       default:
         break;
     }
-  }, [audioID, buttonID, dispatch]);
+  }, [audioId, buttonId, dispatch]);
 
   useEffect(() => {
     window.addEventListener("keydown", handleKeyPress);
@@ -45,9 +45,9 @@ export const DrumPad:React.FC<Props> = ({ buttonID, audioID, audioSRC }) => {
   }, [handleKeyPress]);
 
   return (
-    <button className='drum-pad' id={ buttonID } onClick={ handleClick }>
-      <audio className='clip' id={ audioID } src={ audioSRC } ref={ soundEffect }></audio>
-      { audioID }
+    <button className='drum-pad' id={ buttonId } onClick={ handleClick }>
+      <audio className='clip' id={ audioId } src={ audioSrc } ref={ soundEffect }></audio>
+      { audioId }
     </button>
   );
 }
